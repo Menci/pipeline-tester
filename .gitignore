@@ -1,0 +1,12 @@
+/src
+/bin
+/obj
+/.vscode
+/.Xil
+/scripts
+/code.txt
+/mars-memory.txt
+/mars-registers.txt
+/mine-memory.txt
+/mine-registers.txt
+/test.asm
