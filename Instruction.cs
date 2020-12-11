@@ -190,7 +190,11 @@ namespace CodeGen
         
         public override string Populate(RandomConfiguration config)
         {
-            return Get(new[] {config.RandomReadRegister(), "$ra"});
+            // https://stackoverflow.com/a/23226806
+            // jalr's rs and rd must be non-equal
+            string register = config.RandomReadRegister();
+            while (register == "$31") register = config.RandomReadRegister();
+            return Get(new[] {register, "$ra"});
         }
         
         public override bool IsBranch => true;
