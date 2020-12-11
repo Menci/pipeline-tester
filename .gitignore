@@ -10,3 +10,5 @@
 /mine-memory.txt
 /mine-registers.txt
 /test.asm
+/vivado*
+*.log
