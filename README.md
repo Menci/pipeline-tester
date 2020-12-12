@@ -177,3 +177,7 @@ By default it generates instructions below:
 ```
 
 To change the instruction set, modify the `new List`'s arguments in `P5Generator.cs` file. Find more instructions in `P6Generator.cs`.
+
+# Known Issue
+
+It don't generate `lw` with a register other than `$zero` as the base address.
