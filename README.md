@@ -176,8 +176,10 @@ By default it generates instructions below:
 * jr, jal
 ```
 
-To change the instruction set, modify the `new List`'s arguments in `P5Generator.cs` file. Find more instructions in `P6Generator.cs`.
+To change the instruction set, **uncomment** the `new List`'s arguments in `P5Generator.cs` file.
+
+There're also **specific instruction tests** in `Program.cs` file, you can uncomment them to test your individual instruction (or group of instructions). But testing individual instruction could NOT guarantee that your pipeline is implemented properly since some data/control hazards only occur on combination of different instructions.
 
 # Known Issue
 
-It don't generate `lw` with a register other than `$zero` as the base address.
+It don't generate `lw` with a register other than `$zero` as the base address (no this issue for unaligned loads e.g. `lh`).
