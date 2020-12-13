@@ -185,3 +185,9 @@ There're also **specific instruction tests** in `Program.cs` file, you can uncom
 # Known Issue
 
 It don't generate `lw` with a register other than `$zero` as the base address (no this issue for unaligned loads e.g. `lh`).
+
+Vivado has bugs on simulation. Its simulator may crash when running. If you see a test fails and your output lines is less than Mars's lines, it may be:
+
+* Your testbench didn't run for enough cycles. I recommend 5000 if you didn't change the Mars's execuation script (to increase Mars's maximum step).
+* Your CPU is stalled for too long. Or your CPU deadlocked.
+* It's a **Vivado bug**. You can re-run with Vivado GUI. Vivado will tell you if it crashes.
