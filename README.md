@@ -163,6 +163,12 @@ If your CPU doesn't fail, it will exit after running 100 groups of tests. You ma
 while dotnet run <vivado executable path> <project file path>; do :; done
 ```
 
+If you want to sleep, you may want to let it run even if a test fails to capture as many bugs as possible. You can run this command to let it save failed testcase and result (to a folder named with time in current directory) on failure and restart tests.
+
+```bash
+while true; do if ! dotnet run<vivado executable path> <project file path>; then d=$(date); mkdir "$d"; mv *-registers.txt *-memory.txt "$d"; fi; done
+```
+
 For debugging your CPU with failed tests, Mars GUI may be helpful. You can view the instructions near by the instruction you failed and run to see the correct result.
 
 # Customization
