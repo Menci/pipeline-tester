@@ -69,7 +69,7 @@ namespace CodeGen
             return true;
         }
 
-        public static bool CompareOutput(string mars, string mine)
+        public static (bool, bool) CompareOutput(string mars, string mine)
         {
             string[] marsLines = mars.Split("\n").Select(s => s.Trim(' ', '\r')).ToArray();
             string[] mineLines = mine.Split("\n").Select(s => s.Trim(' ', '\r')).ToArray();
@@ -117,7 +117,7 @@ namespace CodeGen
                 File.WriteAllLines("mine-registers.txt", mineLinesRegister);
             }
 
-            return memoryEqual && registerEqual;
+            return (memoryEqual, registerEqual);
         }
     }
 }

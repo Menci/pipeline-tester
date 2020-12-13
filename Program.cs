@@ -28,12 +28,14 @@ namespace CodeGen
             Console.WriteLine("Running mine");
             Utils.Run(new ProcessStartInfo("./compile.sh", "test.asm"));
             string mine = vivado.RunSimulation();
-            bool result = Utils.CompareOutput(mars, mine);
-            if (!result)
+            var (memoryEqual, registerEqual) = Utils.CompareOutput(mars, mine);
+            if (!memoryEqual || !registerEqual)
             {
                 Console.WriteLine("Compared different!");
-                Console.WriteLine("Please check mars-registers.txt and mine-registers.txt (vimdiff mars-registers.txt mine-registers.txt)");
-                Console.WriteLine("Please check mars-memory.txt and mine-memory.txt (vimdiff mars-memory.txt mine-memory.txt)");
+                if (!registerEqual)
+                    Console.WriteLine("Please check mine-registers.txt and mars-registers.txt (vimdiff mine-registers.txt mars-registers.txt)");
+                if (!memoryEqual)
+                    Console.WriteLine("Please check mine-memory.txt and mars-memory.txt (vimdiff mine-memory.txt mars-memory.txt)");
                 Environment.Exit(1);
             }
 

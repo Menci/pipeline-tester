@@ -14,13 +14,18 @@ namespace CodeGen
     {
         Process process;
 
+        const string vivadoTempDirectory = "/tmp/pipeline-tester-tmp";
+
         const string waitVivadoCommand = "qwq";
         const string waitVivadoCommandResult = "invalid command name \"qwq\"";
 
         public Vivado(string vivadoExecutablePath, string vivadoProjectPath)
         {
+            Process.Start("rm", "-rf " + vivadoTempDirectory).WaitForExit();
+            Process.Start("mkdir", "-p " + vivadoTempDirectory).WaitForExit();
+
             var startInfo = new ProcessStartInfo(vivadoExecutablePath, "-mode tcl \"" + vivadoProjectPath + "\"");
-            startInfo.WorkingDirectory = "/tmp";
+            startInfo.WorkingDirectory = vivadoTempDirectory;
             startInfo.RedirectStandardInput = true;
             startInfo.RedirectStandardOutput = true;
             process = new Process();
@@ -35,10 +40,10 @@ namespace CodeGen
                 Console.WriteLine("Vivado: '{0}'", line);
             }
 
-            this.ExecuteCommand("launch_simulation -simset sim_1");
+            this.ExecuteCommand("launch_simulation -simset sim_1", true);
         }
 
-        private string ExecuteCommand(string command)
+        private string ExecuteCommand(string command, bool printOutput = false)
         {
             process.StandardInput.WriteLine(command);
             process.StandardInput.WriteLine(waitVivadoCommand);
@@ -48,6 +53,9 @@ namespace CodeGen
                 if (line == waitVivadoCommandResult) break;
                 if (line.StartsWith("@"))
                     result.AppendLine(line);
+
+                if (printOutput)
+                    Console.WriteLine("Vivado: '{0}'", line);
             }
             return result.ToString();
         }

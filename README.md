@@ -145,7 +145,7 @@ Total Valid lines: Mars: 64 vs mine: 665
 Total Valid lines: Mars: 385 vs mine: 3754
 ```
 
-If a test fails, it will exit with a error message. The you should check `mars-registers.txt` and `mine-registers.txt`. The first is the correct registers write operations and the second is what you did.
+If a test fails, it will exit with a error message. You should check the outputs according to the error message, for example, check `mine-registers.txt` and `mars-registers.txt`. The first is the correct registers write operations and the second is what you did.
 
 ```bash
 vimdiff mine-registers.txt mars-registers.txt
@@ -153,7 +153,7 @@ vimdiff mine-registers.txt mars-registers.txt
 # [Type ":wq" and press enter] twice to exit `vimdiff`
 ```
 
-You may need to check `mars-memory.txt` and `mine-memory.txt` if your register operations are all right.
+You may need to check `mars-memory.txt` and `mine-memory.txt` if the error message tells you.
 
 If your CPU doesn't fail, it will exit after running 100 groups of tests. You may want to let it run continuously:
 
