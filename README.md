@@ -85,6 +85,8 @@ $display("@%h: $%d <= %h", programCounter, registerId, dataWrite);
 
 You must **NOT** `$display` any other lines starting with `@`. Any other lines not starting with `@` is ignored.
 
+The PC value in your output is ignored when comparing with Mars's since you may NOT saved PC value in every pipeline stage (then you can pass a `0` instead). Printing a PC value may help you debugging. But at least you can see the different line and read PC value in Mars's output.
+
 Before running tests, you should start simulation in your Vivado IDE and **make sure your code compiles and runs**. I didn't handle compilation errors in tests.
 
 # Usage

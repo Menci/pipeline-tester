@@ -62,7 +62,7 @@ namespace CodeGen
             Console.WriteLine($"Total Valid lines: Mars: {a.Length} vs mine: {b.Length}");
             for (int i = 0; i < a.Length; i++)
             {
-                if (i >= b.Length || a[i] != b[i])
+                if (i >= b.Length || a[i].Split(":")[1] != b[i].Split(":")[1])
                     return false;
             }
 
